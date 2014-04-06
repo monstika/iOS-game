@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
+#import "ScoreViewController.h"
 
 @class FlipsideViewController;
 
@@ -16,13 +17,14 @@
 @end
 
 @interface FlipsideViewController : UIViewController {
-    int score, screenWidth, screenHeight;
+    int score, screenWidth, screenHeight, currentPowerUp;
     float speed;
+    bool invincible;
 }
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
-@property (strong, nonatomic) IBOutlet UIImageView *gameBg;
+@property (strong, nonatomic) IBOutlet UIImageView *gameBg, *powerUp;
 
 @property (strong, nonatomic) NSMutableArray *bgAnim, *angryMeteorAnim, *vampMeteorAnim;
 @property (strong, nonatomic) NSMutableArray *enemies, *enemyHitboxes;

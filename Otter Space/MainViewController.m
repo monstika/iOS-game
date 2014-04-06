@@ -32,8 +32,7 @@
     _menuBg.animationDuration = 1;
     _menuBg.animationRepeatCount = -1;
     [_menuBg startAnimating];
-    
-        
+
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

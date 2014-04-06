@@ -7,7 +7,7 @@
         <!--Main View Controller-->
         <scene sceneID="rV5-Y2-ghB">
             <objects>
-                <viewController id="rQl-PL-IFJ" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="rQl-PL-IFJ" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bfD-tQ-IfD"/>
                         <viewControllerLayoutGuide type="bottom" id="c4s-Xn-x5B"/>
@@ -46,7 +46,7 @@
         <!--Flipside View Controller-->
         <scene sceneID="z9J-Vg-hzE">
             <objects>
-                <viewController id="kIf-nA-PKG" customClass="FlipsideViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gameViewController" id="kIf-nA-PKG" customClass="FlipsideViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rBX-Xh-dAM"/>
                         <viewControllerLayoutGuide type="bottom" id="mPd-kI-uoc"/>
@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="368" y="182"/>
         </scene>
-        <!--View Controller-->
+        <!--Score View Controller-->
         <scene sceneID="N3j-hv-eGR">
             <objects>
-                <viewController id="S26-Od-HCG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scoreViewController" id="S26-Od-HCG" customClass="ScoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nyv-fB-uQA"/>
                         <viewControllerLayoutGuide type="bottom" id="Sf4-AA-6gI"/>

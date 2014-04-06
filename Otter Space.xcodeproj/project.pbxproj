@@ -74,6 +74,7 @@
 		5DAF692518F12D4B00AB7E5E /* rocketz.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 5DAF692418F12D4B00AB7E5E /* rocketz.bmp */; };
 		5DAF692718F12F5D00AB7E5E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF692618F12F5D00AB7E5E /* AVFoundation.framework */; };
 		5DAF692918F12F6400AB7E5E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF692818F12F6400AB7E5E /* CoreMotion.framework */; };
+		5DAF692C18F191AC00AB7E5E /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,8 @@
 		5DAF692418F12D4B00AB7E5E /* rocketz.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = rocketz.bmp; sourceTree = "<group>"; };
 		5DAF692618F12F5D00AB7E5E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5DAF692818F12F6400AB7E5E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		5DAF692A18F191AC00AB7E5E /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
+		5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +230,8 @@
 				5DAF689318F1284C00AB7E5E /* AppDelegate.h */,
 				5DAF689418F1284C00AB7E5E /* AppDelegate.m */,
 				5DAF689618F1284C00AB7E5E /* Main.storyboard */,
+				5DAF692A18F191AC00AB7E5E /* ScoreViewController.h */,
+				5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */,
 				5DAF689918F1284C00AB7E5E /* MainViewController.h */,
 				5DAF689A18F1284C00AB7E5E /* MainViewController.m */,
 				5DAF689C18F1284C00AB7E5E /* FlipsideViewController.h */,
@@ -497,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DAF692C18F191AC00AB7E5E /* ScoreViewController.m in Sources */,
 				5DAF689518F1284C00AB7E5E /* AppDelegate.m in Sources */,
 				5DAF689B18F1284C00AB7E5E /* MainViewController.m in Sources */,
 				5DAF689E18F1284C00AB7E5E /* FlipsideViewController.m in Sources */,
