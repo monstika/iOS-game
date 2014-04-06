@@ -17,6 +17,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    score = 0;
+    screenWidth  = [[UIScreen mainScreen] bounds].size.width;
+    screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    
+    speed = 0;
 	
     _bgAnim = [[NSMutableArray alloc] init];
     _angryMeteorAnim = [[NSMutableArray alloc] init];
@@ -48,23 +54,23 @@
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.deviceMotionUpdateInterval = 0.1;
     
-    [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMDeviceMotion *deviceMotion, NSError *error) { [self update];
+    [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMDeviceMotion *deviceMotion, NSError *error) {
+        [self update];
    }];
 }
 
 - (void)update {
-    float pitch = _motionManager.deviceMotion.attitude.pitch;
+    score++;
+    speed+=.0001;
+    
+    float roll = _motionManager.deviceMotion.attitude.roll;
 
-    _rocket.center = CGPointMake(pitch*100, _rocket.center.y);
+    _rocket.center = CGPointMake(screenWidth/2+(roll*100), _rocket.center.y);
+    
+    [_scoreLabel setText:[NSString stringWithFormat:@"%f",roll]];
     
 }
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Actions
 
