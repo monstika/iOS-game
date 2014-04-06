@@ -31,6 +31,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="menuBg" destination="hSv-EZ-iUf" id="yLL-4P-YvF"/>
                         <outlet property="playBtn" destination="clb-GX-5tU" id="d8B-gA-n7Y"/>
@@ -79,15 +81,35 @@
                             <constraint firstItem="hED-2o-FLw" firstAttribute="trailing" secondItem="tg4-aq-CMy" secondAttribute="trailing" id="cVE-3m-sGp"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="gameBg" destination="ukg-KO-Cti" id="w7P-1a-qT6"/>
                         <outlet property="rocket" destination="82m-JX-qB2" id="bpm-4E-whZ"/>
                         <outlet property="scoreLabel" destination="wgU-Q3-hj1" id="iaf-mb-trx"/>
+                        <segue destination="S26-Od-HCG" kind="modal" identifier="gameOver" modalTransitionStyle="crossDissolve" id="Pv3-47-dmZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xlJ-1o-FvB" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="368" y="182"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="N3j-hv-eGR">
+            <objects>
+                <viewController id="S26-Od-HCG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nyv-fB-uQA"/>
+                        <viewControllerLayoutGuide type="bottom" id="Sf4-AA-6gI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1wF-dd-weO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sky-2C-XaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="744" y="182"/>
         </scene>
     </scenes>
     <resources>
