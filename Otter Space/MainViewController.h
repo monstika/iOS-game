@@ -9,5 +9,9 @@
 #import "FlipsideViewController.h"
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *menuBg;
+@property (strong, nonatomic) IBOutlet UIImageView *playBtn;
+
+@property (strong, nonatomic) NSMutableArray *bgAnim;
 
 @end

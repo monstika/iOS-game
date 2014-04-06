@@ -18,13 +18,31 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    _bgAnim = [[NSMutableArray alloc] init];
+    
+    for(int i=10; i<= 30; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"starrybg%d.png",i]];
+        if(image != nil)
+            [_bgAnim addObject:image];
+            
+    }
+    
+    _menuBg.animationImages = _bgAnim;
+    _menuBg.animationDuration = 1;
+    _menuBg.animationRepeatCount = -1;
+    [_menuBg startAnimating];
+    
+        
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+        UITouch *touch = [touches anyObject];
+        if ([touch view] == _playBtn)
+            [self performSegueWithIdentifier:@"beginGame" sender:_playBtn];
 }
+
+
 
 #pragma mark - Flipside View
 

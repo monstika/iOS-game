@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
 
 @class FlipsideViewController;
 
@@ -17,6 +18,15 @@
 @interface FlipsideViewController : UIViewController
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UIImageView *gameBg;
+
+@property (strong, nonatomic) NSMutableArray *bgAnim, *angryMeteorAnim, *vampMeteorAnim;
+@property (strong, nonatomic) NSMutableArray *enemies, *enemyHitboxes;
+
+@property (strong, nonatomic) IBOutlet UIImageView *rocket;
+
+@property (strong, nonatomic) CMMotionManager *motionManager;
+
 
 - (IBAction)done:(id)sender;
 
