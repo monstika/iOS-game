@@ -73,6 +73,10 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.5499999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BiU-gv-6yJ">
+                                <rect key="frame" x="40" y="90" width="249" height="143"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -84,6 +88,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="gameBg" destination="ukg-KO-Cti" id="w7P-1a-qT6"/>
+                        <outlet property="powerUpLabel" destination="BiU-gv-6yJ" id="Nrl-nt-XKK"/>
                         <outlet property="rocket" destination="82m-JX-qB2" id="bpm-4E-whZ"/>
                         <outlet property="scoreLabel" destination="wgU-Q3-hj1" id="iaf-mb-trx"/>
                         <segue destination="S26-Od-HCG" kind="modal" identifier="gameOver" modalTransitionStyle="crossDissolve" id="Pv3-47-dmZ"/>

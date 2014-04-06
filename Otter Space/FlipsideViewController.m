@@ -15,7 +15,7 @@
 @implementation FlipsideViewController
 
 const static int ENEMY = 0;
-const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3;
+const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3, MULTIPLY = 4, BONUS = 500;
 
 - (void)viewDidLoad
 {
@@ -23,16 +23,15 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3;
     
     srand([[NSDate date] timeIntervalSince1970]);
     
-    
     //only one PowerUp on screen at a time
     currentPowerUp = nil;
     
+    speed = 0;
     score = 0;
+    multiplier = 1;
     screenWidth  = [[UIScreen mainScreen] bounds].size.width;
     screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    speed = 0;
-	
     _bgAnim = [[NSMutableArray alloc] init];
     _angryMeteorAnim = [[NSMutableArray alloc] init];
     _vampMeteorAnim = [[NSMutableArray alloc] init];
@@ -42,9 +41,11 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3;
     
     invincible = false;
     
-    _powerUp = [[UIImageView alloc] initWithFrame:CGRectMake(300, 300, 30, 30)];
+    _powerUp = [[UIImageView alloc] initWithFrame:CGRectMake(300, 300, 40, 40)];
     [_powerUp setImage:[UIImage imageNamed:@"rocketz.bmp"]];
+    [self resetPowerUp:rand()%200-800];
     [self.view addSubview:_powerUp];
+    
     
     for(int i=10; i<= 30; i++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"starrygamebg%d.png",i]];
@@ -114,7 +115,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3;
 }
 
 - (void)update {
-    score++;
+    score+= multiplier;
     speed+=.0005;
     
     float roll = _motionManager.deviceMotion.attitude.roll;
@@ -125,7 +126,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3;
     if (x>30 && x<screenWidth-30)
         _rocket.center = CGPointMake(x, _rocket.center.y);
     
-    [_scoreLabel setText:[NSString stringWithFormat:@"%f",speed]];
+    [_scoreLabel setText:[NSString stringWithFormat:@"%d",score]];
     
     [self move];
     
@@ -133,16 +134,19 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3;
 
 
 - (void)move {
-    [self checkCollision:_powerUp withType:INVINCIBLE_POWERUP];
+    [self checkCollision:_powerUp withType:currentPowerUp];
   
     _powerUp.center = CGPointMake(screenWidth/2, _powerUp.center.y+1+speed);
+    if (_powerUp.center.y > 800)
+        [self resetPowerUp:rand()%200-800];
     
     for (int i = 0; i<[_enemies count]; i++) {
         UIImageView *meteor = _enemies[i];
         UIImageView *hitbox = _enemyHitboxes[i];
-   
         meteor.center = CGPointMake(meteor.center.x, meteor.center.y+1+speed);
         hitbox.center = CGPointMake(meteor.center.x, meteor.center.y+30+speed);
+        if (CGRectIntersectsRect(meteor.frame, _powerUp.frame))
+            _powerUp.center = CGPointMake((int)(_powerUp.center.x+100)%screenWidth, _powerUp.center.y);
         [self checkCollision:hitbox withType:ENEMY];
         if (meteor.center.y > 800)
             [self resetEnemy:meteor];
@@ -150,25 +154,51 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3;
 }
 
 - (void)checkCollision: (UIImageView*)hitbox withType: (int)type{
+    
     if(CGRectIntersectsRect(hitbox.frame,_rocket.frame)) {
-        if (type == ENEMY && !invincible)
+        
+        if (type == ENEMY && !invincible) {
             [_scoreLabel setText:@"DEATHHHHHH!!!!!"];
-            // [self performSegueWithIdentifier:@"gameOver" sender:self];
-        else if (type == FASTER_POWERUP)
-            speed+=.2;
-        else if (type == SLOWER_POWERUP)
-            speed-=.2;
-        else if (type == INVINCIBLE_POWERUP) {
-            invincible = YES;
-            _rocket.alpha = .5;
+            return;
         }
+        else switch (type) {
+            NSLog([NSString stringWithFormat:@"COLLIDED: %d",currentPowerUp]);
+            case FASTER_POWERUP:
+                speed+=1;
+                break;
+            case SLOWER_POWERUP:
+                speed-=1;
+                break;
+            case INVINCIBLE_POWERUP:
+                invincible = YES;
+                _rocket.alpha = .5;
+                [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
+                break;
+            case MULTIPLY:
+                multiplier = 2;
+                [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
+                break;
+            default:
+                return;
+        }
+        score += BONUS * multiplier;
+        [self resetPowerUp:rand()%200-800];
     }
     
 }
 
+- (void)resetInvincible {
+    invincible = NO;
+    _rocket.alpha=1;
+}
+
+- (void)resetMultiplier {
+    multiplier = 1;
+}
+
 - (void)resetEnemy: (UIImageView*)meteor {
+  
     int x = rand()%(screenWidth);
-  //  int y = rand()%100 -150;
     int y = -125;
     meteor.center = CGPointMake(x, y);
     
@@ -179,6 +209,36 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3;
         meteor.animationImages = _vampMeteorAnim;
     [meteor startAnimating];
     
+}
+
+/*
+-(void)animate {
+    [UIView animateWithDuration:2.0 animations:^{
+        _powerUpLabel.alpha = .8;
+    }completion:^(BOOL finished) {
+        [UIView animateWithDuration:3.0 animations:^{
+            _powerUpLabel.alpha = 0;
+        }];
+    }];
+}
+ */
+
+- (void) resetPowerUp: (int)y{
+    int x = rand()%(screenWidth-100)+50;
+    _powerUp.center= CGPointMake(x, y);
+    currentPowerUp = rand()%4 + 1;
+    switch (currentPowerUp) {
+        case SLOWER_POWERUP:
+            //[_powerUpLabel setImage:[UIImage imageNamed:@"slow.png"]];
+            // [self animate];
+            if (speed < 1)
+                [self resetPowerUp:y];
+            [_powerUp setImage:[UIImage imageNamed:@"rocketz.bmp"]];
+            break;
+        default:
+            break;
+    }
+  //  NSLog([NSString stringWithFormat:@"RESET POWERUP TO: %d", currentPowerUp]);
 }
 
 

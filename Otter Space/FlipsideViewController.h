@@ -17,17 +17,19 @@
 @end
 
 @interface FlipsideViewController : UIViewController {
-    int score, screenWidth, screenHeight, currentPowerUp;
+    int score, multiplier, currentPowerUp;
+    int screenWidth, screenHeight;
     float speed;
     bool invincible;
 }
+@property (strong, nonatomic) IBOutlet UIImageView *powerUpLabel;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIImageView *gameBg, *powerUp;
 
 @property (strong, nonatomic) NSMutableArray *bgAnim, *angryMeteorAnim, *vampMeteorAnim;
-@property (strong, nonatomic) NSMutableArray *enemies, *enemyHitboxes;
+@property (strong, nonatomic) NSMutableArray *enemies, *enemyHitboxes, *coins;
 
 @property (strong, nonatomic) IBOutlet UIImageView *rocket;
 

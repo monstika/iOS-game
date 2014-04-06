@@ -75,6 +75,8 @@
 		5DAF692718F12F5D00AB7E5E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF692618F12F5D00AB7E5E /* AVFoundation.framework */; };
 		5DAF692918F12F6400AB7E5E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF692818F12F6400AB7E5E /* CoreMotion.framework */; };
 		5DAF692C18F191AC00AB7E5E /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */; };
+		5DC3E78518F1FDC500175023 /* snail.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3E78418F1FDC500175023 /* snail.png */; };
+		5DC3E78718F2080300175023 /* slow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3E78618F2080300175023 /* slow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +165,8 @@
 		5DAF692818F12F6400AB7E5E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5DAF692A18F191AC00AB7E5E /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
+		5DC3E78418F1FDC500175023 /* snail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snail.png; sourceTree = "<group>"; };
+		5DC3E78618F2080300175023 /* slow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,8 +280,10 @@
 			children = (
 				5DAF692218F129E000AB7E5E /* title.png */,
 				5DAF68C018F128EA00AB7E5E /* highscoresbtn.png */,
+				5DC3E78418F1FDC500175023 /* snail.png */,
 				5DAF692418F12D4B00AB7E5E /* rocketz.bmp */,
 				5DAF68C118F128EA00AB7E5E /* playbtn.png */,
+				5DC3E78618F2080300175023 /* slow.png */,
 				5DAF68BF18F128D200AB7E5E /* meteors */,
 				5DAF68BE18F128A900AB7E5E /* gameBg */,
 				5DAF68BD18F128A000AB7E5E /* menuBg */,
@@ -450,6 +456,7 @@
 				5DAF68DC18F1290500AB7E5E /* starrygamebg13.png in Resources */,
 				5DAF68E518F1290500AB7E5E /* starrygamebg22.png in Resources */,
 				5DAF690618F1292D00AB7E5E /* starrybg13.png in Resources */,
+				5DC3E78518F1FDC500175023 /* snail.png in Resources */,
 				5DAF68EA18F1290500AB7E5E /* starrygamebg27.png in Resources */,
 				5DAF68DB18F1290500AB7E5E /* starrygamebg12.png in Resources */,
 				5DAF68E718F1290500AB7E5E /* starrygamebg24.png in Resources */,
@@ -476,6 +483,7 @@
 				5DAF691D18F1299500AB7E5E /* vampire2.png in Resources */,
 				5DAF690718F1292D00AB7E5E /* starrybg14.png in Resources */,
 				5DAF68E218F1290500AB7E5E /* starrygamebg19.png in Resources */,
+				5DC3E78718F2080300175023 /* slow.png in Resources */,
 				5DAF68DE18F1290500AB7E5E /* starrygamebg15.png in Resources */,
 				5DAF68C218F128EA00AB7E5E /* highscoresbtn.png in Resources */,
 				5DAF68E318F1290500AB7E5E /* starrygamebg20.png in Resources */,
@@ -713,6 +721,7 @@
 				5DAF68B818F1284C00AB7E5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5DAF68B918F1284C00AB7E5E /* Build configuration list for PBXNativeTarget "Otter SpaceTests" */ = {
 			isa = XCConfigurationList;
@@ -721,6 +730,7 @@
 				5DAF68BB18F1284C00AB7E5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
