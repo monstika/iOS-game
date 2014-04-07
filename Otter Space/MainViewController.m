@@ -32,7 +32,14 @@
     _menuBg.animationDuration = 1;
     _menuBg.animationRepeatCount = -1;
     [_menuBg startAnimating];
+    
 
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self animateOtter];
+    _otterMoveTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(animateOtter) userInfo:nil repeats:YES];
+    
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -41,6 +48,15 @@
             [self performSegueWithIdentifier:@"beginGame" sender:_playBtn];
 }
 
+-(void) animateOtter {
+    [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        _otter.center = CGPointMake(_otter.center.x, _otter.center.y+20);
+    } completion:^(BOOL finished){
+        [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _otter.center = CGPointMake(_otter.center.x, _otter.center.y-20);
+        } completion:^(BOOL finished){}];
+    }];
+}
 
 #pragma mark - Flipside View
 
@@ -51,6 +67,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [_otterMoveTimer invalidate];
     if ([[segue identifier] isEqualToString:@"showAlternate"]) {
         [[segue destinationViewController] setDelegate:self];
     }

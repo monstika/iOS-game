@@ -24,10 +24,10 @@
     float speed;
     bool invincible;
 }
+@property (strong, nonatomic) IBOutlet UILabel *powerUpLabel;
 
 @property (strong, nonatomic) AVAudioPlayer *player;
 
-@property (strong, nonatomic) IBOutlet UIImageView *powerUpLabel;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
@@ -39,6 +39,7 @@
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
 @property (strong, nonatomic) IBOutlet UIImageView *otter, *otterHitbox;
+@property (strong, nonatomic) NSTimer *labelTimer, *invincibilityTimer, *multiplierTimer;
 
 - (IBAction)done:(id)sender;
 

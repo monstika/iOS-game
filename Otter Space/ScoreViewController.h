@@ -15,5 +15,6 @@
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *highscoreLabel;
 
 @end

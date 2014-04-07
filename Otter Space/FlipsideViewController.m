@@ -15,7 +15,7 @@
 @implementation FlipsideViewController
 
 const static int ENEMY = 0;
-const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3, MULTIPLY = 4, BONUS = 500;
+const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3, MULTIPLY = 4, BONUS = 1000;
 
 - (void)viewDidLoad
 {
@@ -25,12 +25,16 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     
     //only one PowerUp on screen at a time
     currentPowerUp = nil;
-    [AppDelegate appDelegate].score = 0;
     
+    [AppDelegate appDelegate].score = 0;
     speed = 0;
     score = 0;
     
+    //score multiplier
     multiplier = 1;
+    
+    invincible = false;
+    
     screenWidth  = [[UIScreen mainScreen] bounds].size.width;
     screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
@@ -42,13 +46,14 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     _enemies =         [[NSMutableArray alloc] init];
     _enemyHitboxes =   [[NSMutableArray alloc] init];
     
-    invincible = false;
-    
     _powerUp = [[UIImageView alloc] initWithFrame:CGRectMake(300, 300, 60, 60)];
     [_powerUp setImage:[UIImage imageNamed:@"turtle.png"]];
     [self resetPowerUp:rand()%200-800];
     [self.view addSubview:_powerUp];
     
+    _otterHitbox = [[UIImageView alloc] initWithFrame:CGRectMake(_otter.center.x, _otter.center.y, _otter.frame.size.width-20, _otter.frame.size.height-20)];
+  //  [_otterHitbox setImage:[UIImage imageNamed:@"rocketz.bmp"]];
+    [self.view addSubview:_otterHitbox];
     _otterAnim = [self loadImagesForFilename:@"otter" start:1 count:2];
  
     _otter.animationImages = _otterAnim;
@@ -71,9 +76,9 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     NSURL *url = [NSURL fileURLWithPath:path];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [_player prepareToPlay];
-    
-    //repeat forever!
     _player.numberOfLoops = -1;
+    
+    _powerUpLabel.font = [UIFont fontWithName:@"Minisystem-Regular" size:40];
     
 }
 
@@ -86,8 +91,6 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     }];
     
     [_player play];
-    
- 
 }
 
 - (void)setupEnemies {
@@ -127,8 +130,10 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     int x = screenWidth/2+(roll*175);
     
     //check if new xcor will move otter off screen
-    if (x>30 && x<screenWidth-30)
+    if (x>30 && x<screenWidth-30){
         _otter.center = CGPointMake(x, _otter.center.y);
+        _otterHitbox.center = CGPointMake(x, _otter.center.y);
+    }
     
     [_scoreLabel setText:[NSString stringWithFormat:@"%d",score]];
     
@@ -158,8 +163,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
 }
 
 - (void)checkCollision: (UIImageView*)hitbox withType: (int)type{
-    
-    if(CGRectIntersectsRect(hitbox.frame,_otter.frame)) {
+    if(CGRectIntersectsRect(hitbox.frame,_otterHitbox.frame)) {
         
         if (type == ENEMY && !invincible) {
             //[_scoreLabel setText:@"DEATHHHHHH!!!!!"];
@@ -168,21 +172,27 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
             return;
         }
         else switch (type) {
-            NSLog([NSString stringWithFormat:@"COLLIDED: %d",currentPowerUp]);
+            
             case FASTER_POWERUP:
+                [self setLabelText:@"FASTER!"];
                 speed+=1;
                 break;
             case SLOWER_POWERUP:
+                [self setLabelText:@"SLOWER!"];
                 speed-=1;
                 break;
             case INVINCIBLE_POWERUP:
+                [self setLabelText:@"INVINCIBLE!"];
                 invincible = YES;
                 _otter.alpha = .5;
-                [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
+                [_invincibilityTimer invalidate];
+                _invincibilityTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
                 break;
             case MULTIPLY:
+                [self setLabelText:@"2x SCORE!"];
                 multiplier = 2;
-                [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
+                [_multiplierTimer invalidate];
+                _multiplierTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
                 break;
             default:
                 return;
@@ -191,6 +201,20 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
         [self resetPowerUp:rand()%200-800];
     }
     
+}
+
+- (void) setLabelText: (NSString *) text {
+    _powerUpLabel.alpha = 1;
+    _powerUpLabel.text = text;
+    [_labelTimer invalidate];
+    _labelTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(hideLabel) userInfo:nil repeats:NO];
+    
+}
+
+- (void) hideLabel {
+    [UIView animateWithDuration:1 animations:^{
+        _powerUpLabel.alpha=0;
+    }];
 }
 
 - (void)resetInvincible {

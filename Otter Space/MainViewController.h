@@ -13,5 +13,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *playBtn;
 
 @property (strong, nonatomic) NSMutableArray *bgAnim;
+@property (strong, nonatomic) IBOutlet UIImageView *otter;
+@property (strong, nonatomic) NSTimer *otterMoveTimer;
 
 @end
