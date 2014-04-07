@@ -75,8 +75,11 @@
 		5DAF692718F12F5D00AB7E5E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF692618F12F5D00AB7E5E /* AVFoundation.framework */; };
 		5DAF692918F12F6400AB7E5E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF692818F12F6400AB7E5E /* CoreMotion.framework */; };
 		5DAF692C18F191AC00AB7E5E /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */; };
-		5DC3E78518F1FDC500175023 /* snail.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3E78418F1FDC500175023 /* snail.png */; };
 		5DC3E78718F2080300175023 /* slow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3E78618F2080300175023 /* slow.png */; };
+		5DC57DD118F32BD100ACEDB1 /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DD018F32BD100ACEDB1 /* turtle.png */; };
+		5DC57DD318F3348700ACEDB1 /* ShinyTech2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DD218F3348700ACEDB1 /* ShinyTech2.mp3 */; };
+		5DC57DD618F33D4200ACEDB1 /* otter1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DD418F33D4200ACEDB1 /* otter1.png */; };
+		5DC57DD718F33D4200ACEDB1 /* otter2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DD518F33D4200ACEDB1 /* otter2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,8 +168,11 @@
 		5DAF692818F12F6400AB7E5E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5DAF692A18F191AC00AB7E5E /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
-		5DC3E78418F1FDC500175023 /* snail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snail.png; sourceTree = "<group>"; };
 		5DC3E78618F2080300175023 /* slow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slow.png; sourceTree = "<group>"; };
+		5DC57DD018F32BD100ACEDB1 /* turtle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle.png; sourceTree = "<group>"; };
+		5DC57DD218F3348700ACEDB1 /* ShinyTech2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ShinyTech2.mp3; sourceTree = "<group>"; };
+		5DC57DD418F33D4200ACEDB1 /* otter1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otter1.png; sourceTree = "<group>"; };
+		5DC57DD518F33D4200ACEDB1 /* otter2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otter2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,12 +284,14 @@
 		5DAF68BC18F1289B00AB7E5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5DC57DD918F33E9500ACEDB1 /* audio */,
 				5DAF692218F129E000AB7E5E /* title.png */,
+				5DC57DD018F32BD100ACEDB1 /* turtle.png */,
 				5DAF68C018F128EA00AB7E5E /* highscoresbtn.png */,
-				5DC3E78418F1FDC500175023 /* snail.png */,
 				5DAF692418F12D4B00AB7E5E /* rocketz.bmp */,
 				5DAF68C118F128EA00AB7E5E /* playbtn.png */,
 				5DC3E78618F2080300175023 /* slow.png */,
+				5DC57DD818F33D5E00ACEDB1 /* otter */,
 				5DAF68BF18F128D200AB7E5E /* meteors */,
 				5DAF68BE18F128A900AB7E5E /* gameBg */,
 				5DAF68BD18F128A000AB7E5E /* menuBg */,
@@ -356,6 +364,23 @@
 				5DAF691B18F1299500AB7E5E /* vampire2.png */,
 			);
 			name = meteors;
+			sourceTree = "<group>";
+		};
+		5DC57DD818F33D5E00ACEDB1 /* otter */ = {
+			isa = PBXGroup;
+			children = (
+				5DC57DD418F33D4200ACEDB1 /* otter1.png */,
+				5DC57DD518F33D4200ACEDB1 /* otter2.png */,
+			);
+			name = otter;
+			sourceTree = "<group>";
+		};
+		5DC57DD918F33E9500ACEDB1 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				5DC57DD218F3348700ACEDB1 /* ShinyTech2.mp3 */,
+			);
+			name = audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,7 +481,6 @@
 				5DAF68DC18F1290500AB7E5E /* starrygamebg13.png in Resources */,
 				5DAF68E518F1290500AB7E5E /* starrygamebg22.png in Resources */,
 				5DAF690618F1292D00AB7E5E /* starrybg13.png in Resources */,
-				5DC3E78518F1FDC500175023 /* snail.png in Resources */,
 				5DAF68EA18F1290500AB7E5E /* starrygamebg27.png in Resources */,
 				5DAF68DB18F1290500AB7E5E /* starrygamebg12.png in Resources */,
 				5DAF68E718F1290500AB7E5E /* starrygamebg24.png in Resources */,
@@ -473,12 +497,14 @@
 				5DAF690C18F1292D00AB7E5E /* starrybg19.png in Resources */,
 				5DAF68C318F128EA00AB7E5E /* playbtn.png in Resources */,
 				5DAF68A018F1284C00AB7E5E /* Images.xcassets in Resources */,
+				5DC57DD718F33D4200ACEDB1 /* otter2.png in Resources */,
 				5DAF690818F1292D00AB7E5E /* starrybg15.png in Resources */,
 				5DAF688F18F1284C00AB7E5E /* InfoPlist.strings in Resources */,
 				5DAF692018F1299E00AB7E5E /* angrymeteor1.png in Resources */,
 				5DAF689818F1284C00AB7E5E /* Main.storyboard in Resources */,
 				5DAF690A18F1292D00AB7E5E /* starrybg17.png in Resources */,
 				5DAF690418F1292D00AB7E5E /* starrybg11.png in Resources */,
+				5DC57DD118F32BD100ACEDB1 /* turtle.png in Resources */,
 				5DAF691618F1292D00AB7E5E /* starrybg29.png in Resources */,
 				5DAF691D18F1299500AB7E5E /* vampire2.png in Resources */,
 				5DAF690718F1292D00AB7E5E /* starrybg14.png in Resources */,
@@ -489,7 +515,9 @@
 				5DAF68E318F1290500AB7E5E /* starrygamebg20.png in Resources */,
 				5DAF692318F129E000AB7E5E /* title.png in Resources */,
 				5DAF68E618F1290500AB7E5E /* starrygamebg23.png in Resources */,
+				5DC57DD618F33D4200ACEDB1 /* otter1.png in Resources */,
 				5DAF691718F1292D00AB7E5E /* starrybg30.png in Resources */,
+				5DC57DD318F3348700ACEDB1 /* ShinyTech2.mp3 in Resources */,
 				5DAF692118F1299E00AB7E5E /* angrymeteor2.png in Resources */,
 				5DAF68EB18F1290500AB7E5E /* starrygamebg28.png in Resources */,
 			);

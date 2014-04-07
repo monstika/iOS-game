@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
+#import <AVFoundation/AVFoundation.h>
 #import "ScoreViewController.h"
 #import "AppDelegate.h"
 
@@ -23,19 +24,21 @@
     float speed;
     bool invincible;
 }
+
+@property (strong, nonatomic) AVAudioPlayer *player;
+
 @property (strong, nonatomic) IBOutlet UIImageView *powerUpLabel;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIImageView *gameBg, *powerUp;
 
-@property (strong, nonatomic) NSMutableArray *bgAnim, *angryMeteorAnim, *vampMeteorAnim;
+@property (strong, nonatomic) NSMutableArray *bgAnim, *otterAnim, *angryMeteorAnim, *vampMeteorAnim;
 @property (strong, nonatomic) NSMutableArray *enemies, *enemyHitboxes, *coins;
-
-@property (strong, nonatomic) IBOutlet UIImageView *rocket;
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
+@property (strong, nonatomic) IBOutlet UIImageView *otter, *otterHitbox;
 
 - (IBAction)done:(id)sender;
 

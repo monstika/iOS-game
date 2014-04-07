@@ -42,6 +42,12 @@
     [prefs synchronize];
 }
 
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [touches anyObject];
+    if ([touch view] == _scoreLabel)
+        [self performSegueWithIdentifier:@"loadMenu" sender:self];
+}
+
 /*
 #pragma mark - Navigation
 
