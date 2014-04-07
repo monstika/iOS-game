@@ -25,19 +25,22 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     
     //only one PowerUp on screen at a time
     currentPowerUp = nil;
+    [AppDelegate appDelegate].score = 0;
     
     speed = 0;
     score = 0;
+    
     multiplier = 1;
     screenWidth  = [[UIScreen mainScreen] bounds].size.width;
     screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    _bgAnim = [[NSMutableArray alloc] init];
+    _bgAnim =          [[NSMutableArray alloc] init];
     _angryMeteorAnim = [[NSMutableArray alloc] init];
-    _vampMeteorAnim = [[NSMutableArray alloc] init];
+    _vampMeteorAnim =  [[NSMutableArray alloc] init];
     
-    _enemies = [[NSMutableArray alloc] init];
-    _enemyHitboxes = [[NSMutableArray alloc] init];
+    _enemies =         [[NSMutableArray alloc] init];
+    _enemyHitboxes =   [[NSMutableArray alloc] init];
+    _coins =           [[NSMutableArray alloc]init];
     
     invincible = false;
     
@@ -71,9 +74,6 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     [_gameBg startAnimating];
     
     [self setupEnemies];
-    
-    
-    
     
 }
 
@@ -113,6 +113,8 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
         
     }
 }
+
+
 
 - (void)update {
     score+= multiplier;
@@ -158,7 +160,9 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     if(CGRectIntersectsRect(hitbox.frame,_rocket.frame)) {
         
         if (type == ENEMY && !invincible) {
-            [_scoreLabel setText:@"DEATHHHHHH!!!!!"];
+            //[_scoreLabel setText:@"DEATHHHHHH!!!!!"];
+            [AppDelegate appDelegate].score = score;
+            [self performSegueWithIdentifier:@"endGame" sender:self];
             return;
         }
         else switch (type) {

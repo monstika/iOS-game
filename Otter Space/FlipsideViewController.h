@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
 #import "ScoreViewController.h"
+#import "AppDelegate.h"
 
 @class FlipsideViewController;
 

@@ -27,13 +27,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    int score = [AppDelegate appDelegate].score;
+    [_scoreLabel setText:[NSString stringWithFormat:@"HIGH SCORE: %d", score]];
+    [self checkHighScore:score];
    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)checkHighScore: (int)score {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    int highScore = [prefs integerForKey: @"highScore"];
+    if (score > highScore)
+        [prefs setInteger: score forKey: @"highScore"];
+    [prefs synchronize];
 }
 
 /*

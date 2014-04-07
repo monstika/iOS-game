@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface ScoreViewController : UIViewController
 {
     int score;
 }
+
+@property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end

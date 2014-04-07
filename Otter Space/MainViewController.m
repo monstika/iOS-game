@@ -42,7 +42,6 @@
 }
 
 
-
 #pragma mark - Flipside View
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
