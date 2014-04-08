@@ -16,5 +16,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutlet UILabel *highscoreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *menuBtn;
 
 @end

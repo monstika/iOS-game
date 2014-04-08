@@ -33,7 +33,6 @@
     _menuBg.animationRepeatCount = -1;
     [_menuBg startAnimating];
     
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {

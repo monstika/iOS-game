@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     int score = [AppDelegate appDelegate].score;
-    [_scoreLabel setText:[NSString stringWithFormat:@"SCORE: %d", score]];
+    
     [self checkHighScore:score];
    
    
@@ -41,14 +41,16 @@
     if (score > highScore) {
         highScore = score;
         [prefs setInteger: highScore forKey: @"highScore"];
+        [_scoreLabel setText:[NSString stringWithFormat:@"HIGH SCORE!", score]];
+
     }
     [prefs synchronize];
-     [_highscoreLabel setText:[NSString stringWithFormat:@"HIGH SCORE: %d", highScore]];
+     [_highscoreLabel setText:[NSString stringWithFormat:@"%d", score]];
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [touches anyObject];
-    if ([touch view] == _scoreLabel)
+    if ([touch view] == _menuBtn)
         [self performSegueWithIdentifier:@"loadMenu" sender:self];
 }
 

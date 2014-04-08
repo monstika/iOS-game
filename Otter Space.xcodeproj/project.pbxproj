@@ -75,7 +75,7 @@
 		5DAF692918F12F6400AB7E5E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF692818F12F6400AB7E5E /* CoreMotion.framework */; };
 		5DAF692C18F191AC00AB7E5E /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */; };
 		5DC3E78718F2080300175023 /* slow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3E78618F2080300175023 /* slow.png */; };
-		5DC57DD118F32BD100ACEDB1 /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DD018F32BD100ACEDB1 /* turtle.png */; };
+		5DC57DD118F32BD100ACEDB1 /* powerup2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DD018F32BD100ACEDB1 /* powerup2.png */; };
 		5DC57DD318F3348700ACEDB1 /* ShinyTech2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DD218F3348700ACEDB1 /* ShinyTech2.mp3 */; };
 		5DC57DDC18F351AC00ACEDB1 /* meteor.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DDA18F351AC00ACEDB1 /* meteor.png */; };
 		5DC57DDD18F351AC00ACEDB1 /* otter.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DDB18F351AC00ACEDB1 /* otter.png */; };
@@ -84,6 +84,9 @@
 		5DC57DE318F3611500ACEDB1 /* minisystem.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DE218F3606A00ACEDB1 /* minisystem.ttf */; };
 		5DC57DE518F3862D00ACEDB1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DE418F3862D00ACEDB1 /* icon.png */; };
 		5DC57DE718F3899100ACEDB1 /* gameover.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC57DE618F3899100ACEDB1 /* gameover.png */; };
+		5DCD60CB18F39876007466F2 /* powerup1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DCD60C818F39876007466F2 /* powerup1.png */; };
+		5DCD60CC18F39876007466F2 /* powerup3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DCD60C918F39876007466F2 /* powerup3.png */; };
+		5DCD60CD18F39876007466F2 /* powerup4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DCD60CA18F39876007466F2 /* powerup4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,7 +175,7 @@
 		5DAF692A18F191AC00AB7E5E /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		5DAF692B18F191AC00AB7E5E /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
 		5DC3E78618F2080300175023 /* slow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slow.png; sourceTree = "<group>"; };
-		5DC57DD018F32BD100ACEDB1 /* turtle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle.png; sourceTree = "<group>"; };
+		5DC57DD018F32BD100ACEDB1 /* powerup2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerup2.png; sourceTree = "<group>"; };
 		5DC57DD218F3348700ACEDB1 /* ShinyTech2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ShinyTech2.mp3; sourceTree = "<group>"; };
 		5DC57DDA18F351AC00ACEDB1 /* meteor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteor.png; sourceTree = "<group>"; };
 		5DC57DDB18F351AC00ACEDB1 /* otter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otter.png; sourceTree = "<group>"; };
@@ -181,6 +184,9 @@
 		5DC57DE218F3606A00ACEDB1 /* minisystem.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = minisystem.ttf; sourceTree = "<group>"; };
 		5DC57DE418F3862D00ACEDB1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		5DC57DE618F3899100ACEDB1 /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameover.png; sourceTree = "<group>"; };
+		5DCD60C818F39876007466F2 /* powerup1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerup1.png; sourceTree = "<group>"; };
+		5DCD60C918F39876007466F2 /* powerup3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerup3.png; sourceTree = "<group>"; };
+		5DCD60CA18F39876007466F2 /* powerup4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerup4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,11 +298,11 @@
 		5DAF68BC18F1289B00AB7E5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5DCD60C718F39826007466F2 /* powerUps */,
 				5DC57DE418F3862D00ACEDB1 /* icon.png */,
 				5DC57DE218F3606A00ACEDB1 /* minisystem.ttf */,
 				5DC57DD918F33E9500ACEDB1 /* audio */,
 				5DAF692218F129E000AB7E5E /* title.png */,
-				5DC57DD018F32BD100ACEDB1 /* turtle.png */,
 				5DC57DE618F3899100ACEDB1 /* gameover.png */,
 				5DAF68C018F128EA00AB7E5E /* highscoresbtn.png */,
 				5DC57DDA18F351AC00ACEDB1 /* meteor.png */,
@@ -395,6 +401,17 @@
 			name = audio;
 			sourceTree = "<group>";
 		};
+		5DCD60C718F39826007466F2 /* powerUps */ = {
+			isa = PBXGroup;
+			children = (
+				5DCD60C818F39876007466F2 /* powerup1.png */,
+				5DCD60C918F39876007466F2 /* powerup3.png */,
+				5DCD60CA18F39876007466F2 /* powerup4.png */,
+				5DC57DD018F32BD100ACEDB1 /* powerup2.png */,
+			);
+			name = powerUps;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -478,6 +495,7 @@
 				5DAF690518F1292D00AB7E5E /* starrybg12.png in Resources */,
 				5DAF68E118F1290500AB7E5E /* starrygamebg18.png in Resources */,
 				5DC57DDC18F351AC00ACEDB1 /* meteor.png in Resources */,
+				5DCD60CC18F39876007466F2 /* powerup3.png in Resources */,
 				5DAF691118F1292D00AB7E5E /* starrybg24.png in Resources */,
 				5DAF690F18F1292D00AB7E5E /* starrybg22.png in Resources */,
 				5DAF68DF18F1290500AB7E5E /* starrygamebg16.png in Resources */,
@@ -485,9 +503,11 @@
 				5DAF691018F1292D00AB7E5E /* starrybg23.png in Resources */,
 				5DAF68EC18F1290500AB7E5E /* starrygamebg29.png in Resources */,
 				5DAF690E18F1292D00AB7E5E /* starrybg21.png in Resources */,
+				5DCD60CD18F39876007466F2 /* powerup4.png in Resources */,
 				5DAF691418F1292D00AB7E5E /* starrybg27.png in Resources */,
 				5DAF68E418F1290500AB7E5E /* starrygamebg21.png in Resources */,
 				5DC57DE118F35C3600ACEDB1 /* otter2.png in Resources */,
+				5DCD60CB18F39876007466F2 /* powerup1.png in Resources */,
 				5DAF68E918F1290500AB7E5E /* starrygamebg26.png in Resources */,
 				5DAF690918F1292D00AB7E5E /* starrybg16.png in Resources */,
 				5DAF68E018F1290500AB7E5E /* starrygamebg17.png in Resources */,
@@ -519,7 +539,7 @@
 				5DAF689818F1284C00AB7E5E /* Main.storyboard in Resources */,
 				5DAF690A18F1292D00AB7E5E /* starrybg17.png in Resources */,
 				5DAF690418F1292D00AB7E5E /* starrybg11.png in Resources */,
-				5DC57DD118F32BD100ACEDB1 /* turtle.png in Resources */,
+				5DC57DD118F32BD100ACEDB1 /* powerup2.png in Resources */,
 				5DAF691618F1292D00AB7E5E /* starrybg29.png in Resources */,
 				5DAF691D18F1299500AB7E5E /* vampire2.png in Resources */,
 				5DAF690718F1292D00AB7E5E /* starrybg14.png in Resources */,

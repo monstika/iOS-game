@@ -54,7 +54,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     [self.view addSubview:_powerUp];
     
     _otterHitbox = [[UIImageView alloc] initWithFrame:CGRectMake(_otter.center.x, _otter.center.y, _otter.frame.size.width-20, _otter.frame.size.height-20)];
-  //  [_otterHitbox setImage:[UIImage imageNamed:@"rocketz.bmp"]];
+    [_otterHitbox setContentMode: UIViewContentModeScaleAspectFit];
     [self.view addSubview:_otterHitbox];
     _otterAnim = [self loadImagesForFilename:@"otter" start:1 count:2];
  
@@ -146,9 +146,9 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
 
 
 - (void)move {
-    [self checkCollision:_powerUp withType:currentPowerUp];
+    [self checkCollision:_powerUp withHitbox:_powerUp withType:currentPowerUp];
   
-    _powerUp.center = CGPointMake(screenWidth/2, _powerUp.center.y+1+speed);
+    _powerUp.center = CGPointMake(_powerUp.center.x, _powerUp.center.y+1+speed);
     if (_powerUp.center.y > 800)
         [self resetPowerUp:rand()%200-800];
     
@@ -159,23 +159,26 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
         hitbox.center = CGPointMake(meteor.center.x, meteor.center.y+30+speed);
         if (CGRectIntersectsRect(meteor.frame, _powerUp.frame))
             _powerUp.center = CGPointMake((int)(_powerUp.center.x+100)%screenWidth, _powerUp.center.y);
-        [self checkCollision:hitbox withType:ENEMY];
+        [self checkCollision:meteor withHitbox:hitbox withType:ENEMY];
         if (meteor.center.y > 800)
             [self resetEnemy:meteor];
     }
 }
 
-- (void)checkCollision: (UIImageView*)hitbox withType: (int)type{
+- (void)checkCollision: (UIImageView*)object withHitbox:(UIImageView*)hitbox withType: (int)type{
     if(CGRectIntersectsRect(hitbox.frame,_otterHitbox.frame)) {
-        
-        if (type == ENEMY && !invincible) {
-            //[_scoreLabel setText:@"DEATHHHHHH!!!!!"];
-            [AppDelegate appDelegate].score = score;
-            [self die];
-            return;
-        }
-        else switch (type) {
-            
+        switch (type) {
+            case ENEMY:
+                if (invincible){
+                    [self resetEnemy:object];
+                    [self resetInvincible];
+                    break;
+                }
+                else {
+                    [AppDelegate appDelegate].score = score;
+                    [self die];
+                    return;
+                }
             case FASTER_POWERUP:
                 [self setLabelText:@"FASTER!"];
                 speed+=1;
@@ -185,12 +188,10 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
                 speed-=1;
                 break;
             case INVINCIBLE_POWERUP:
-                [self setLabelText:@"INVINCIBLE!"];
+                [self setLabelText:@"SHIELD!"];
+                [_otterHitbox setImage:[UIImage imageNamed:@"powerup3.png"]];
                 invincible = YES;
                 _otter.alpha = .5;
-                [self startCountdownAt:5];
-                [_invincibilityTimer invalidate];
-                _invincibilityTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible)userInfo:nil repeats:NO];
                 break;
             case MULTIPLY:
                 [self setLabelText:@"2x SCORE!"];
@@ -202,7 +203,8 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
             default:
                 return;
         }
-        score += BONUS * multiplier;
+        if (type !=ENEMY)
+             score += BONUS * multiplier;
         [self resetPowerUp:rand()%200-800];
     }
 }
@@ -243,6 +245,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
 - (void)resetInvincible {
     invincible = NO;
     _otter.alpha=1;
+    [_otterHitbox setImage:nil];
 }
 
 - (void)resetMultiplier {
@@ -264,34 +267,20 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     
 }
 
-/*
--(void)animate {
-    [UIView animateWithDuration:2.0 animations:^{
-        _powerUpLabel.alpha = .8;
-    }completion:^(BOOL finished) {
-        [UIView animateWithDuration:3.0 animations:^{
-            _powerUpLabel.alpha = 0;
-        }];
-    }];
-}
- */
 
 - (void) resetPowerUp: (int)y{
     int x = rand()%(screenWidth-100)+50;
     _powerUp.center= CGPointMake(x, y);
     currentPowerUp = rand()%4 + 1;
+    [_powerUp setImage:[UIImage imageNamed:[NSString stringWithFormat:@"powerup%d.png", currentPowerUp]]];
     switch (currentPowerUp) {
         case SLOWER_POWERUP:
-            //[_powerUpLabel setImage:[UIImage imageNamed:@"slow.png"]];
-            // [self animate];
             if (speed < 1)
                 [self resetPowerUp:y];
-            [_powerUp setImage:[UIImage imageNamed:@"turtle.png"]];
             break;
         default:
             break;
     }
-  //  NSLog([NSString stringWithFormat:@"RESET POWERUP TO: %d", currentPowerUp]);
 }
 
 - (void) die {
