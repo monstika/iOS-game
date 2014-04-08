@@ -19,7 +19,7 @@
 @end
 
 @interface FlipsideViewController : UIViewController {
-    int score, multiplier, currentPowerUp;
+    int score, multiplier, currentPowerUp, countdown;
     int screenWidth, screenHeight;
     float speed;
     bool invincible;
@@ -29,6 +29,7 @@
 @property (strong, nonatomic) AVAudioPlayer *player;
 
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *countdownLabel;
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIImageView *gameBg, *powerUp;
@@ -39,7 +40,7 @@
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
 @property (strong, nonatomic) IBOutlet UIImageView *otter, *otterHitbox;
-@property (strong, nonatomic) NSTimer *labelTimer, *invincibilityTimer, *multiplierTimer;
+@property (strong, nonatomic) NSTimer *labelTimer, *invincibilityTimer, *multiplierTimer, *countdownTimer;
 
 - (IBAction)done:(id)sender;
 

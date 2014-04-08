@@ -33,6 +33,8 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     //score multiplier
     multiplier = 1;
     
+    countdown = 0;
+    
     invincible = false;
     
     screenWidth  = [[UIScreen mainScreen] bounds].size.width;
@@ -79,6 +81,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     _player.numberOfLoops = -1;
     
     _powerUpLabel.font = [UIFont fontWithName:@"Minisystem-Regular" size:40];
+    _countdownLabel.font = [UIFont fontWithName:@"Minisystem-Regular" size:40];
     
 }
 
@@ -185,12 +188,14 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
                 [self setLabelText:@"INVINCIBLE!"];
                 invincible = YES;
                 _otter.alpha = .5;
+                [self startCountdownAt:5];
                 [_invincibilityTimer invalidate];
-                _invincibilityTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
+                _invincibilityTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible)userInfo:nil repeats:NO];
                 break;
             case MULTIPLY:
                 [self setLabelText:@"2x SCORE!"];
                 multiplier = 2;
+                [self startCountdownAt:5];
                 [_multiplierTimer invalidate];
                 _multiplierTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
                 break;
@@ -200,14 +205,14 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
         score += BONUS * multiplier;
         [self resetPowerUp:rand()%200-800];
     }
-    
 }
+
 
 - (void) setLabelText: (NSString *) text {
     _powerUpLabel.alpha = 1;
     _powerUpLabel.text = text;
     [_labelTimer invalidate];
-    _labelTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(hideLabel) userInfo:nil repeats:NO];
+    _labelTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideLabel) userInfo:nil repeats:NO];
     
 }
 
@@ -215,6 +220,24 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     [UIView animateWithDuration:1 animations:^{
         _powerUpLabel.alpha=0;
     }];
+}
+
+- (void) startCountdownAt: (int) time {
+    countdown = time;
+    [_countdownTimer invalidate];
+    [self updateCountdown];
+    _countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdown) userInfo:nil repeats:YES];
+    
+}
+
+- (void) updateCountdown {
+    if (countdown == 0){
+       [ _countdownTimer invalidate];
+        _countdownLabel.text = @"";
+        return;
+    }
+    _countdownLabel.text = [NSString stringWithFormat:@"%d",countdown];
+    countdown --;
 }
 
 - (void)resetInvincible {
