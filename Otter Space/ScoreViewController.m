@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     int score = [AppDelegate appDelegate].score;
-    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [self checkHighScore:score];
    
    

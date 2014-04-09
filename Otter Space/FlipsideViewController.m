@@ -20,6 +20,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     srand([[NSDate date] timeIntervalSince1970]);
     
@@ -53,7 +54,8 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     [self resetPowerUp:rand()%200-800];
     [self.view addSubview:_powerUp];
     
-    _otterHitbox = [[UIImageView alloc] initWithFrame:CGRectMake(_otter.center.x, _otter.center.y, _otter.frame.size.width-20, _otter.frame.size.height-20)];
+    _otterHitbox = [[UIImageView alloc] initWithFrame:CGRectMake(_otter.frame.origin.x, _otter.frame.origin.y, _otter.frame.size.width-20, _otter.frame.size.height-40)];
+
     [_otterHitbox setContentMode: UIViewContentModeScaleAspectFit];
     [self.view addSubview:_otterHitbox];
     _otterAnim = [self loadImagesForFilename:@"otter" start:1 count:2];
@@ -83,11 +85,12 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     _powerUpLabel.font = [UIFont fontWithName:@"Minisystem-Regular" size:40];
     _countdownLabel.font = [UIFont fontWithName:@"Minisystem-Regular" size:40];
     
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.motionManager.deviceMotionUpdateInterval = 1/60;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    self.motionManager = [[CMMotionManager alloc] init];
-    self.motionManager.deviceMotionUpdateInterval = 1/60;
     
     [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMDeviceMotion *deviceMotion, NSError *error) {
         [self update];
@@ -118,7 +121,6 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
         
         [self.view addSubview:meteor];
         [self.view addSubview:hitbox];
-        
     }
 }
 
@@ -138,7 +140,8 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
         _otterHitbox.center = CGPointMake(x, _otter.center.y);
     }
     
-    [_scoreLabel setText:[NSString stringWithFormat:@"%d",score]];
+    
+    [_scoreLabel setText:[NSString stringWithFormat:@"%d (%dx)",score, multiplier]];
     
     [self move];
     
@@ -195,10 +198,8 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
                 break;
             case MULTIPLY:
                 [self setLabelText:@"2x SCORE!"];
-                multiplier = 2;
+                multiplier *= 2;
                 [self startCountdownAt:5];
-                [_multiplierTimer invalidate];
-                _multiplierTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(resetInvincible) userInfo:nil repeats:NO];
                 break;
             default:
                 return;
@@ -236,6 +237,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
     if (countdown == 0){
        [ _countdownTimer invalidate];
         _countdownLabel.text = @"";
+        [self resetMultiplier];
         return;
     }
     _countdownLabel.text = [NSString stringWithFormat:@"%d",countdown];
