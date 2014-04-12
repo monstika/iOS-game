@@ -16,6 +16,7 @@
 
 const static int ENEMY = 0;
 const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3, MULTIPLY = 4, BONUS = 1000;
+bool debug = true;
 
 - (void)viewDidLoad
 {
@@ -175,7 +176,7 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
                 if (invincible){
                     [self resetEnemy:object];
                     [self resetInvincible];
-                    break;
+                    return;
                 }
                 else {
                     [AppDelegate appDelegate].score = score;
@@ -204,8 +205,8 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
             default:
                 return;
         }
-        if (type !=ENEMY)
-             score += BONUS * multiplier;
+      
+        score += BONUS * multiplier;
         [self resetPowerUp:rand()%200-800];
     }
 }
@@ -255,7 +256,6 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
 }
 
 - (void)resetEnemy: (UIImageView*)meteor {
-  
     int x = rand()%(screenWidth);
     int y = -125;
     meteor.center = CGPointMake(x, y);
@@ -271,6 +271,8 @@ const static int FASTER_POWERUP = 1, SLOWER_POWERUP = 2, INVINCIBLE_POWERUP = 3,
 
 
 - (void) resetPowerUp: (int)y{
+    if (debug)
+        NSLog(@"Resetting powerup");
     int x = rand()%(screenWidth-100)+50;
     _powerUp.center= CGPointMake(x, y);
     currentPowerUp = rand()%4 + 1;
